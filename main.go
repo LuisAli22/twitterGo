@@ -50,7 +50,7 @@ func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (
 	}
 	//Cuando encuentra el prefijo que viene por parametro, lo reemplaza por la
 	//cadena vacia
-	path := strings.Replace(request.PathParameters["twitterGo"], os.Getenv("UrlPrefix"), "", -1)
+	path := strings.Replace(request.PathParameters["twittergo"], os.Getenv("UrlPrefix"), "", -1)
 	// A continuacion colocamos variables en el context
 	// El segundo parametro de WithValue pide un key que puede ser
 	// de cualquier tipo. Podrìa poner un string, pero GO (y cualquier lenguaje)
