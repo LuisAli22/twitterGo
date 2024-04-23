@@ -16,13 +16,13 @@ import (
 
 func main() {
 	//La llamada y el comienzo de la lambda
-	lambda.Start(EjecutoLambda)
+	lambda.Start(HandleRequest)
 }
 
 // Cuando tengo una API REST en Amazon y llamo al API Gateway desde la aplicacion
 // o desde Postman, la API gateway se va a conectar con mi lambda y le va a mandar
 // un objeto de tipo APIGatewayProxyRequest
-func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
+func HandleRequest(ctx context.Context, request events.APIGatewayProxyRequest) (*events.APIGatewayProxyResponse, error) {
 	//Aca va la logica de mi desarrollo.
 	//Todo lo que pong aca va a ser lo que ejecute cuando entra en la lambda
 	var res *events.APIGatewayProxyResponse

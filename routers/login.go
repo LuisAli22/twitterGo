@@ -35,7 +35,7 @@ func Login(ctx context.Context) models.ResAPI {
 	}
 	jwtKey, err := jwt.GeneroJWT(ctx, userData)
 	if err != nil {
-		r.Message = "Ocurriò un error al intentar generar el token correspondiente" + err.Error()
+		r.Message = "Ocurrió un error al intentar generar el token correspondiente" + err.Error()
 		return r
 
 	}
