@@ -17,7 +17,7 @@ func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) mod
 	//Le da un valor inicial de 400 porque son muchas mas las veces que va a dar error, que va a faltar
 	//que simplemente cuando este todo ok
 	r.Status = 400
-	isOk, statusCode, msg, _ := validoAuthorization(ctx, request)
+	isOk, statusCode, msg, claim := validoAuthorization(ctx, request)
 	if !isOk {
 		r.Status = statusCode
 		r.Message = msg
@@ -30,19 +30,25 @@ func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) mod
 			return routers.Registro(ctx)
 		case "login":
 			return routers.Login(ctx)
+		case "tweet":
+			return routers.GraboTweet(ctx, claim)
 		}
 	case "GET":
 		switch ctx.Value(models.Key("path")).(string) {
 		case "verperfil":
 			return routers.VerPerfil(request)
+		case "leoTweets":
+			return routers.LeoTweets(request)
 		}
 	case "PUT":
 		switch ctx.Value(models.Key("path")).(string) {
-
+		case "modificarPerfil":
+			return routers.ModificarPerfil(ctx, claim)
 		}
 	case "DELETE":
 		switch ctx.Value(models.Key("path")).(string) {
-
+		case "eliminarTweet":
+			return routers.EliminarTweet(request, claim)
 		}
 	}
 	r.Message = "Method Invalid"
