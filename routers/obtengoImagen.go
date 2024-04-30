@@ -33,9 +33,9 @@ func ObtenerImagen(ctx context.Context, uploadType string, request events.APIGat
 	var filename string
 	switch uploadType {
 	case "A":
-		filename = "avatars/" + perfil.Avatar
+		filename = perfil.Avatar
 	case "B":
-		filename = "banners/" + perfil.Banner
+		filename = perfil.Banner
 	}
 	fmt.Println("Filename " + filename)
 	svc := s3.NewFromConfig(awsgo.Cfg)
